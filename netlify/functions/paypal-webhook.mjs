@@ -85,9 +85,9 @@ async function updateSale(url, key, id, patch, status) {
 async function sendCertificate(email) {
   const gmailUser = getEnv("GMAIL_USER");
   const appPassword = getEnv("GMAIL_APP_PASSWORD");
-  const host = getEnv("SMTP_HOST") || "smtp.gmail.com";
+  const host = getEnv("SMTP_HOST");
   const port = Number(getEnv("SMTP_PORT") || "465");
-  if (!gmailUser || !appPassword) throw new Error("Gmail sender is not configured");
+  if (!gmailUser || !appPassword || !host) throw new Error("Gmail SMTP settings are not configured");
 
   const certificateUrl = "https://raw.githubusercontent.com/ethingraham11-design/one-dollar-experiment/main/The%20%241%20Experiment%20Certificate.pdf";
   const pdfResponse = await fetch(certificateUrl);
