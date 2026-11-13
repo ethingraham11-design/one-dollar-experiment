@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-const getEnv = (name) => Netlify.env.get(name);
+const getEnv = (name) => process.env[name];
 
 async function paypalAccessToken(clientId, clientSecret) {
   const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
