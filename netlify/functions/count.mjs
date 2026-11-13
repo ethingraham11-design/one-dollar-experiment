@@ -1,6 +1,6 @@
 export default async () => {
-  const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+ const url = Netlify.env.get("SUPABASE_URL");
+const key = Netlify.env.get("SUPABASE_SERVICE_ROLE_KEY");
   if (!url || !key) return Response.json({ error: 'Counter is not configured' }, { status: 503 });
   const response = await fetch(`${url}/rest/v1/sales?select=id`, { headers: { apikey: key, Authorization: `Bearer ${key}`, Prefer: 'count=exact', Range: '0-0' } });
   if (!response.ok) return Response.json({ error: 'Could not load counter' }, { status: 502 });
